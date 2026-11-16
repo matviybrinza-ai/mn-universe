@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="N & M — дві особистості, дві історії.">
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <title>N & M — Our Stories</title>
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <img src="images/logo.png" alt="M&N">
+            <p>WELCOME TO OUR WORLD</p>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="M&N">
+        </a>
+
+        <span class="header-caption">
+            TWO PEOPLE · TWO STORIES
+        </span>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+
+        <section class="scroll-scene">
+            <div class="scene-inner">
+
+                <!-- TITLE -->
+                <section class="welcome">
+
+                    <p class="tag">WELCOME TO OUR WORLD</p>
+
+                    <h1>
+                        Хто тобі<br>
+                        <span>приглянувся?</span>
+                    </h1>
+
+                    <p class="welcome-text">
+                        Дві особистості, різні інтереси
+                        та власні історії. Обирай і знайомся!
+                    </p>
+
+                </section>
+
+                <!-- PROFILE CARDS -->
+                <section class="profiles">
+
+                    <a href="nikita.html" class="profile">
+
+                        <div class="profile-image">
+                            <img src="images/nikita.jpg"
+                                 alt="Фотографія Нікіти">
+
+                            <span class="profile-number">01</span>
+                        </div>
+
+                        <div class="profile-info">
+                            <span class="profile-label">FIRST STORY</span>
+
+                            <h2>Нікіта 22yo</h2>
+
+                            <p>
+                                Дізнатися більше
+                                <span class="arrow">↗</span>
+                            </p>
+                        </div>
+
+                    </a>
+
+                    <a href="me.html" class="profile">
+
+                        <div class="profile-image">
+                            <img src="images/matvey.jpg"
+                                 alt="Фотографія Матвія">
+
+                            <span class="profile-number">02</span>
+                        </div>
+
+                        <div class="profile-info">
+                            <span class="profile-label">SECOND STORY</span>
+
+                            <h2>Матвій 15yo</h2>
+
+                            <p>
+                                Дізнатися більше
+                                <span class="arrow">↗</span>
+                            </p>
+                        </div>
+
+                    </a>
+
+                </section>
+
+            </div>
+        </section>
+
+        
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>MADE WITH CREATIVITY</p>
+        <p>M & N · 2026</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+
+        // LOADING SCREEN
+
+        window.addEventListener("load", function () {
+
+            const loader = document.getElementById("loader");
+
+            if (loader) {
+                setTimeout(function () {
+                    loader.classList.add("loader-hidden");
+                }, 500);
+            }
+
+        });
+
+
+        // SCROLL ANIMATION
+
+        const scene = document.querySelector(".scene-inner");
+        const section = document.querySelector(".scroll-scene");
+
+        let ticking = false;
+
+        function updateScene() {
+
+            if (!scene || !section) return;
+
+            const rect = section.getBoundingClientRect();
+
+            const distance =
+                section.offsetHeight - window.innerHeight;
+
+            const progress = Math.max(
+                0,
+                Math.min(1, -rect.top / distance)
+            );
+
+            scene.style.setProperty("--progress", progress);
+
+            ticking = false;
+        }
+
+        window.addEventListener("scroll", function () {
+
+            if (!ticking) {
+                window.requestAnimationFrame(updateScene);
+                ticking = true;
+            }
+
+        }, { passive: true });
+
+        window.addEventListener("resize", updateScene);
+
+        updateScene();
+
+    </script>
+
+</body>
+</html>
